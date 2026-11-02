@@ -1,39 +1,112 @@
+
+import { useState } from "react";
+import Login from "./Login";
+import Patients from "./Patients";
+import Appointments from "./Appointments";
+import Doctors from "./Doctors";
+import Billing from "./Billing";
 import "./App.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [activeModule, setActiveModule] = useState("");
+
+  const cards = [
+    ["👨‍⚕️", "Patients", "Manage patient records"],
+    ["📅", "Appointments", "Manage appointments"],
+    ["🩺", "Doctors", "View doctor information"],
+    ["💳", "Billing", "Manage bills and payments"],
+  ];
+
+  if (!user) {
+    return <Login onLogin={setUser} />;
+  }
+
+  function renderModule() {
+    switch (activeModule) {
+      case "Patients":
+        return <Patients />;
+
+      case "Appointments":
+        return <Appointments />;
+
+      case "Doctors":
+        return <Doctors />;
+
+      case "Billing":
+        return <Billing />;
+
+      default:
+        return <p>Please select a module.</p>;
+    }
+  }
+
   return (
-    <div className="app">
-      <header className="header">
-        <h1>Small Clinic</h1>
-        <p>Appointment & Administration System</p>
+    <main className="dashboard">
+      <header className="dashboard-header">
+        <div>
+          <h1>Small Clinic</h1>
+          <p>Appointment &amp; Administration System</p>
+        </div>
+
+        <button
+          type="button"
+          className="logout-button"
+          onClick={() => {
+            setUser(null);
+            setActiveModule("");
+          }}
+        >
+          Logout
+        </button>
       </header>
 
-      <main className="container">
-        <h2>Clinic Dashboard</h2>
+      {activeModule === "" ? (
+        <>
+          <h2>Clinic Dashboard</h2>
 
-        <div className="cards">
-          <div className="card">
-            <h3>Patients</h3>
-            <p>Manage patient records</p>
-          </div>
+          <p>
+            Welcome,{" "}
+            {user.username || user.name || user.login_id || "User"}!
+          </p>
 
-          <div className="card">
-            <h3>Appointments</h3>
-            <p>Manage appointments</p>
+          <div className="dashboard-grid">
+            {cards.map(([icon, title, description]) => (
+              <button
+                type="button"
+                className="dashboard-card"
+                key={title}
+                onClick={() => setActiveModule(title)}
+              >
+                <div className="dashboard-icon">{icon}</div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </button>
+            ))}
           </div>
+        </>
+      ) : (
+        <section style={{ marginTop: "25px" }}>
+          <button
+            type="button"
+            onClick={() => setActiveModule("")}
+            style={{
+              padding: "10px 16px",
+              marginBottom: "20px",
+              border: "none",
+              borderRadius: "6px",
+              background: "#1976d2",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            ← Back to Dashboard
+          </button>
 
-          <div className="card">
-            <h3>Doctors</h3>
-            <p>View doctor information</p>
-          </div>
-
-          <div className="card">
-            <h3>Billing</h3>
-            <p>Manage bills and payments</p>
-          </div>
-        </div>
-      </main>
-    </div>
+          {renderModule()}
+        </section>
+      )}
+    </main>
   );
 }
 
