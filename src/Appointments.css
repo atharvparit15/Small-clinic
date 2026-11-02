@@ -1,0 +1,146 @@
+
+.appointments-page {
+  padding: 24px;
+  color: #243247;
+  font-family: Arial, sans-serif;
+}
+
+.appointments-page h1 {
+  margin-bottom: 6px;
+}
+
+.appointments-subtitle {
+  color: #68758a;
+  margin-bottom: 22px;
+}
+
+.appointment-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 3px 12px rgba(20, 40, 70, 0.05);
+}
+
+.appointment-card h2 {
+  font-size: 20px;
+  margin: 0 0 18px;
+}
+
+.appointment-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.appointment-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.appointment-form input,
+.appointment-form select,
+.appointment-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.appointment-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  grid-column: 1 / -1;
+}
+
+.appointment-form button,
+.appointment-actions button {
+  padding: 9px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.appointment-form .cancel-button {
+  background: #64748b;
+}
+
+.appointment-message {
+  padding: 10px 12px;
+  background: #eff6ff;
+  border-radius: 6px;
+  color: #1d4ed8;
+}
+
+.appointment-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.appointment-search {
+  max-width: 320px;
+}
+
+.appointment-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.appointment-table th {
+  background: #f8fafc;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.appointment-actions .delete-button {
+  background: #dc2626;
+}
+
+@media (max-width: 700px) {
+  .appointments-page {
+    padding: 12px;
+  }
+
+  .appointment-form {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-list-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .appointment-search {
+    max-width: none;
+  }
+}
